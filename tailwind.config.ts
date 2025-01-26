@@ -22,6 +22,11 @@ const config: Config = {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        dark: {
+          main : '#0F1218',
+          card : '#1D1F25',
+          button : '#2D313B'
+        },
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

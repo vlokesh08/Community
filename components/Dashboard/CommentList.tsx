@@ -56,7 +56,7 @@ export const CommentList = ({ comments }: { comments: any[] }) => {
           )}
           
           <div className="flex-grow">
-            <div className="bg-white dark:bg-neutral-700 py-2 px-5">
+            <div className="bg-white dark:bg-transparent py-2 px-5">
               <div className="flex items-center space-x-4 text-sm text-gray-500 mb-1">
                 <span className="font-medium dark:text-gray-200">{comment.author.name}</span>
                 <span>•</span>
@@ -88,7 +88,7 @@ export const CommentList = ({ comments }: { comments: any[] }) => {
                 )}
               </div>
 
-              {/* {replyingTo === comment.id && (
+              {replyingTo === comment.id && (
                 <div className="mt-3">
                   <textarea
                     value={replyContent}
@@ -102,7 +102,7 @@ export const CommentList = ({ comments }: { comments: any[] }) => {
                       onClick={() => handleReplySubmit(comment.id)}
                       className="px-3 py-1 text-sm text-white bg-blue-600 rounded hover:bg-blue-700"
                     >
-                      Submit
+                      Reply
                     </button>
                     <button
                       onClick={() => {
@@ -115,7 +115,7 @@ export const CommentList = ({ comments }: { comments: any[] }) => {
                     </button>
                   </div>
                 </div>
-              )} */}
+              )}
             </div>
 
             {/* Render replies if expanded */}

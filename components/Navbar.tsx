@@ -27,11 +27,14 @@ export function Navbar() {
       </div>
       
         <div className="flex items-center space-x-4">
+          <Link href="/dashboard" className="text-foreground hover:text-primary">
+            Events
+          </Link>
           <Link href="/discussions" className="text-foreground hover:text-primary">
             Discussions
           </Link>
-          <Link href="/dashboard" className="text-foreground hover:text-primary">
-            Events
+          <Link href="/contributions" className="text-foreground hover:text-primary">
+            Contributions
           </Link>
           {!isHome && (
             <>

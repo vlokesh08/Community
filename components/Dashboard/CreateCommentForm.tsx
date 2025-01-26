@@ -45,7 +45,7 @@ export const CreateCommentForm = ({
         placeholder="Write a comment..."
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="min-h-[100px]"
+        className="min-h-[100px] dark:bg-dark-button rounded-xl border dark:border-gray-600"
       />
       <Button
         onClick={() => createComment()}

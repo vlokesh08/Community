@@ -6,6 +6,7 @@ import { MessageSquare, ThumbsUp, ThumbsDown } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
 import { Separator } from "../ui/separator";
+import DiscussionPageLoader from "../Loaders/DiscussionPageLoader";
 
 // Add interface for type safety
 interface Post {
@@ -51,7 +52,9 @@ export const DiscussionList = ({ categoryId }: { categoryId: string }) => {
   });
 
   if (isLoading) {
-    return <Skeleton className="w-full h-96" />;
+    return (
+      <DiscussionPageLoader />
+    );
   }
 
   return (
@@ -61,7 +64,7 @@ export const DiscussionList = ({ categoryId }: { categoryId: string }) => {
         <Link
           key={post.id}
           href={`/discussions/${post.id}`}
-          className="flex align-middle justify-between bg-white dark:bg-neutral-800 shadow-sm py-3 px-6 hover:shadow-md transition-shadow"
+          className="flex align-middle justify-between bg-white dark:bg-dark-card shadow-sm py-3 px-6 hover:shadow-md transition-shadow"
         >
           <div>
 

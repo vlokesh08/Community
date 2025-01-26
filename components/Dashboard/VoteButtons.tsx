@@ -1,7 +1,7 @@
 'use client'
 
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { ThumbsUp, ThumbsDown, ArrowBigUp, ArrowBigDown } from "lucide-react";
+import { ThumbsUp, ThumbsDown, ArrowBigUp, ArrowBigDown, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
@@ -15,7 +15,7 @@ export const VoteButtons = ({
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { mutate: vote } = useMutation({
+  const { mutate: vote, isPending } = useMutation({
     mutationFn: async (value: number) => {
       const response = await fetch("/api/posts/votes", {
         method: "POST",
@@ -45,19 +45,33 @@ export const VoteButtons = ({
         variant="outline"
         size="sm"
         onClick={() => vote(1)}
-        className="space-x-2"
+        className="space-x-2 dark:bg-dark-button border dark:border-gray-600"
+        disabled={isPending}
       >
-        <ArrowBigUp className="w-6 h-6" />
-        <span>{upvotes}</span>
+        {isPending ? (
+          <Loader2 className="w-6 h-6 animate-spin" />
+        ) : (
+          <>
+            <ArrowBigUp className="w-6 h-6" />
+            <span>{upvotes}</span>
+          </>
+        )}
       </Button>
       <Button
         variant="outline"
         size="sm"
         onClick={() => vote(-1)}
-        className="space-x-2"
+        className="space-x-2 dark:bg-dark-button border dark:border-gray-600"
+        disabled={isPending}
       >
-        <ArrowBigDown className="w-6 h-6" />
-        <span>{downvotes}</span>
+        {isPending ? (
+          <Loader2 className="w-6 h-6 animate-spin" />
+        ) : (
+          <>
+            <ArrowBigDown className="w-6 h-6" />
+            <span>{downvotes}</span>
+          </>
+        )}
       </Button>
     </div>
   );
