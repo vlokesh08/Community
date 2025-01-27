@@ -7,6 +7,8 @@ import { Github, Code, Bug, Book, Coffee, Heart, Stars } from "lucide-react";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Footer from "@/components/LandingPage/Footer";
+import EventsSection from "@/components/LandingPage/EventsSection";
 
 export default function Home() {
   const words = ["Event", "Connections"];
@@ -65,8 +67,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-20">
+        <EventsSection />
+      </section>
+
+      {/* Features Section */}
+      <section className="py-8">
         <div className="container px-4 mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -105,9 +111,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
                 whileHover={{ scale: 1.05 }}
-                className="p-2 dark:bg-neutral-800 rounded-lg border"
+                className="p-2 dark:bg-dark-card rounded-lg border"
               >
-                <div className="py-12 bg-neutral-100 dark:bg-neutral-900 rounded-lg">
+                <div className="py-12 bg-neutral-100 dark:bg-dark-button rounded-lg">
                   {feature.icon}
                 </div>
                 <div className="flex flex-col gap-1 my-3 p-2">
@@ -121,7 +127,7 @@ export default function Home() {
       </section>
 
       {/* Open Source Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50 dark:bg-gradient-to-b dark:from-neutral-900 dark:to-neutral-800">
+      <section className="py-20 ">
         <div className="container px-4 mx-auto ">
           {/* Hero Section */}
           <motion.div
@@ -148,8 +154,8 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <div className="p-8 bg-blue-50 rounded-2xl">
-              <h3 className="text-2xl dark:text-neutral-900 font-semibold mb-4">
+            <div className="p-8 bg-blue-50 dark:bg-dark-card rounded-2xl">
+              <h3 className="text-2xl dark:text-neutral-200 text-neutral-900 font-semibold mb-4">
                 Ready to Contribute?
               </h3>
               <p className="mb-6 text-gray-600">
@@ -159,7 +165,7 @@ export default function Home() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
-                  href="https://github.com/yourusername/event-finder"
+                  href="https://github.com/vlokesh08/Community"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -182,7 +188,7 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-      <section className="flex items-center justify-center w-full">
+      {/* <section className="flex items-center justify-center w-full">
         <div className="max-w-7xl p-4 md:p-8 lg:p-16 w-full">
           <div className="relative rounded-xl bg-blue-900">
             <div className="flex items-center justify-between p-8">
@@ -203,8 +209,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section> */}
       </section>
-      </section>
+      <Footer />
 
     </div>
   );

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { Separator } from "@/components/ui/separator";
 import { SelectSeparator } from "@/components/ui/select";
+import EventLoader from "@/components/Loaders/EventLoader";
 
 interface Event {
   id: string;
@@ -30,6 +31,7 @@ export default function Dashboard() {
 
   const fetchEvents = async () => {
     try {
+      setLoading(true);
       const response = await fetch("/api/events");
       if (!response.ok) {
         throw new Error("Failed to fetch events");
@@ -153,7 +155,7 @@ export default function Dashboard() {
   };
 
   if (loading) {
-    return <div className="container py-8 text-center">Loading events...</div>;
+    return <EventLoader />;
   }
 
   const thisMonthEvents = filterEvents("thisMonth");

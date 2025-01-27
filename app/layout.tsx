@@ -28,7 +28,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={`${inter.className} bg-neutral-50 dark:bg-neutral-900`}>
+      <body className={`${inter.className} bg-neutral-50 dark:bg-dark-main`}>
         <Providers>
           <ThemeProvider
             attribute="class"

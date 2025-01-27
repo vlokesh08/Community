@@ -19,7 +19,7 @@ export function Navbar() {
   const isHome = pathname === '/'
 
   return (
-    <nav className="bg-neutral-100 dark:bg-neutral-900">
+    <nav className="bg-neutral-100 dark:bg-dark-main border border-b">
         <div className='flex container mx-auto max-w-6xl items-center justify-between py-4 '>
 
       <div className="text-xl font-bold">
