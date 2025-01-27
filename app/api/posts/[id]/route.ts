@@ -3,12 +3,14 @@ import { NextResponse } from "next/server";
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
+    console.log(id)
     const post = await prisma.post.findUnique({
       where: {
-        id: params.id,
+        id: id,
       },
       include: {
         author: {
@@ -21,7 +23,7 @@ export async function GET(
         category: true,
         comments: {
           where: {
-            parentId: null  // Only fetch top-level comments
+            parentId: null, // Only fetch top-level comments
           },
           include: {
             author: {
@@ -49,14 +51,10 @@ export async function GET(
     });
 
     if (!post) {
-      return NextResponse.json(
-        { error: "Post not found" },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
 
     return NextResponse.json(post);
-    
   } catch (error) {
     console.error("[POST_GET]", error);
     return NextResponse.json(
@@ -64,4 +62,4 @@ export async function GET(
       { status: 500 }
     );
   }
-} 
+}

@@ -1,4 +1,6 @@
 'use client'
+
+import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { MessageSquare, ThumbsUp, ThumbsDown } from "lucide-react";
@@ -7,13 +9,17 @@ import { CreateCommentForm } from "@/components/Dashboard/CreateCommentForm";
 import { VoteButtons } from "@/components/Dashboard/VoteButtons";
 import { Skeleton } from "@/components/ui/skeleton";
 import DiscussionLoader from "@/components/Loaders/DiscussionLoader";
+
 interface PageProps {
-    params: {
+    params: Promise<{
       id: string;
-    };
-  }
-const DiscussionDetail = ({ params }: PageProps) => {
-  const { id } = params;
+    }>;
+}
+
+export default function DiscussionDetail({ params }: PageProps) {
+  const resolvedParams = React.use(params);
+  const { id } = resolvedParams;
+  
   const { data: post, isLoading } = useQuery({
     queryKey: ["post", id],
     queryFn: async () => {
@@ -58,5 +64,3 @@ const DiscussionDetail = ({ params }: PageProps) => {
     </div>
   );
 };
-
-export default DiscussionDetail;

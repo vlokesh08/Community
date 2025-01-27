@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import prisma from "@/lib/prisma";
 import { authOptions } from "@/lib/auth";
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { eventId: string } }
+  { params }: { params: Promise<{ eventId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -30,11 +30,13 @@ export async function PATCH(
       );
     }
 
+    const { eventId } = await params;
+
     const { status } = await request.json();
 
     const updatedEvent = await prisma.event.update({
       where: {
-        id: params.eventId,
+        id: eventId,
       },
       data: {
         status,
@@ -49,4 +51,4 @@ export async function PATCH(
       { status: 500 }
     );
   }
-} 
+}

@@ -30,12 +30,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-neutral-50 dark:bg-dark-main`}>
         <Providers>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <Navbar />
           <Toaster />
           {children}
